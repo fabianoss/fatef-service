@@ -1,4 +1,4 @@
-package br.com.fatef.entity;
+package br.com.fatef.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
