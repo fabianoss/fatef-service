@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fatef.domain.User;
+import br.com.fatef.dto.UserCreateDTO;
 import br.com.fatef.dto.UserDTO;
 import br.com.fatef.repository.UserRepository;
 
@@ -37,10 +38,12 @@ public class UserService {
 	if (userOpt.isEmpty()) {
 	    return null;
 	}
-	return this.save(userDTO.mapper(userOpt.get()));
+	userDTO.setIdUser(idUser);
+	User userUpdated = repository.save(User.mapper(userDTO));
+	return UserDTO.mapper(userUpdated);	
     }
 
-    public UserDTO save(UserDTO userDTO) {
+    public UserDTO save(UserCreateDTO userDTO) {
 	User userSaved = repository.save(User.mapper(userDTO));
 	return UserDTO.mapper(userSaved);
     }

@@ -2,21 +2,26 @@ package br.com.fatef.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fatef.dto.UserCreateDTO;
 import br.com.fatef.dto.UserDTO;
 import br.com.fatef.service.UserService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
+@Validated
 @RestController
 @RequestMapping(value = "/v1/user")
 public class UserController {
@@ -37,7 +42,7 @@ public class UserController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<UserDTO> save(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> save(@RequestBody @Valid UserCreateDTO userDTO) {
 	return ResponseEntity.ok(userService.save(userDTO));
     }
 

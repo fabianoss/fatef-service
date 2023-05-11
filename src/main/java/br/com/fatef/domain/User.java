@@ -36,10 +36,10 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_user")
+    @Column(name = "idUser")
     private Long idUser;
 
-    @Column(name = "nome")
+    @Column(name = "name")
     @NotNull(message = "O campo nome deve ser informado!")
     private String name;
 

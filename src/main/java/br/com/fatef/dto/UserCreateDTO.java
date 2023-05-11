@@ -1,5 +1,7 @@
 package br.com.fatef.dto;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.BeanUtils;
 
 import br.com.fatef.domain.User;
@@ -15,14 +17,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserDTO {
+public class UserCreateDTO {
     
-    private Long idUser;
+    @NotNull(message = "O campo name não pode ser nulo!")
     private String name;
+    
+    @NotNull(message = "O campo idade não pode ser nulo!")
     private Integer idade;
 
-    public static UserDTO mapper(User entity) {
-	var result = UserDTO.builder().build();
+    public static UserCreateDTO mapper(User entity) {
+	var result = UserCreateDTO.builder().build();
 	BeanUtils.copyProperties(entity, result);
 	return result;
     }
